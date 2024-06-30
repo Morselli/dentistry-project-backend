@@ -1,4 +1,3 @@
-import { UserRole } from "../../../database/entity/User"
 
 interface IUserDto {
   firstName: string,
@@ -6,7 +5,7 @@ interface IUserDto {
   cro: string,
   email: string,
   password: string,
-  role: UserRole
+  role: string
 }
 
 export { IUserDto }

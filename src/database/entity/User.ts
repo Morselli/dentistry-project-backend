@@ -1,16 +1,10 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from "typeorm"
 
-export enum UserRole {
-    SUPER_ADMIN = 'Super Admin',
-    ADMIN = 'Admin',
-    DENTIST = 'Dentist'
-}
-
 @Entity()
 export class User {
 
-    @PrimaryGeneratedColumn('uuid')
-    id: string
+    @PrimaryGeneratedColumn()
+    id: number
 
     @Column()
     first_name: string
@@ -28,14 +22,14 @@ export class User {
     password: string
 
     @Column()
-    role: UserRole
+    role: string
 
-    @CreateDateColumn({ name: 'created_at' })
-    createdAt: Date
+    @CreateDateColumn()
+    created_at: Date
   
-    @UpdateDateColumn({ name: 'updated_at' })
-    updatedAt: Date
+    @UpdateDateColumn()
+    updated_at: Date
   
-    @DeleteDateColumn({ name: 'deleted_at' })
-    deletedAt: Date
+    @DeleteDateColumn()
+    deleted_at: Date
 }

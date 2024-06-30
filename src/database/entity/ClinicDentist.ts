@@ -1,30 +1,23 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, ManyToOne, OneToMany, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from "typeorm"
-import { User } from "./User"
-import { Clinic } from "./Clinic"
-import { ClinicPatient } from "./ClinicPatient"
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from "typeorm"
 
 @Entity()
 export class ClinicDentist {
 
-  @PrimaryGeneratedColumn('increment')
-  id: number
+    @PrimaryGeneratedColumn()
+    id: number
 
-  @OneToOne(() => User)
-  @JoinColumn()
-  user: User
+    @Column()
+    user_id: number
 
-  @ManyToOne(() => Clinic, (clinic) => clinic.clinicDentists)
-  clinic: Clinic
+    @Column()
+    clinic_id: number
 
-  @OneToMany(() => ClinicPatient, (clinicPatient) => clinicPatient.clinicDentist)
-  clinicPatients: ClinicPatient[]
+    @CreateDateColumn()
+    created_at: Date
 
-  @CreateDateColumn({ name: 'created_at' })
-    createdAt: Date
-  
-  @UpdateDateColumn({ name: 'updated_at' })
-    updatedAt: Date
-  
-  @DeleteDateColumn({ name: 'deleted_at' })
-    deletedAt: Date
+    @UpdateDateColumn()
+    updated_at: Date
+
+    @DeleteDateColumn()
+    deleted_at: Date
 }

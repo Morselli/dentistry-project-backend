@@ -1,17 +1,16 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from "typeorm"
-import { ClinicDentist } from "./ClinicDentist"
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from "typeorm"
 
 @Entity()
 export class Clinic {
 
-  @PrimaryGeneratedColumn('uuid')
-  id: string
+  @PrimaryGeneratedColumn()
+  id: number
 
   @Column()
   name: string
 
   @Column()
-  street: string
+  address: string
 
   @Column()
   neighborhood: string
@@ -26,20 +25,17 @@ export class Clinic {
   state: string
 
   @Column()
-  number: string
+  address_number: string
 
   @Column()
   phone: string
 
-  @OneToMany(() => ClinicDentist, (clinicDentist) => clinicDentist.user)
-  clinicDentists: ClinicDentist[]
+  @CreateDateColumn()
+  created_at: Date
 
-  @CreateDateColumn({ name: 'created_at' })
-    createdAt: Date
-  
-  @UpdateDateColumn({ name: 'updated_at' })
-    updatedAt: Date
-  
-  @DeleteDateColumn({ name: 'deleted_at' })
-    deletedAt: Date
+  @UpdateDateColumn()
+  updated_at: Date
+
+  @DeleteDateColumn()
+  deleted_at: Date
 }

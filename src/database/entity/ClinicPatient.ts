@@ -1,24 +1,23 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, ManyToMany, ManyToOne } from "typeorm"
-import { ClinicDentist } from "./ClinicDentist"
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from "typeorm"
 
 @Entity()
 export class ClinicPatient {
 
-  @PrimaryGeneratedColumn('increment')
+  @PrimaryGeneratedColumn()
   id: number
 
   @Column()
   name: string
 
-  @ManyToOne(() => ClinicDentist, (clinicDentist) => clinicDentist.clinicPatients)
-  clinicDentist: ClinicDentist
+  @Column()
+  clinic_dentist_id: number
 
-  @CreateDateColumn({ name: 'created_at' })
-    createdAt: Date
-  
-  @UpdateDateColumn({ name: 'updated_at' })
-    updatedAt: Date
-  
-  @DeleteDateColumn({ name: 'deleted_at' })
-    deletedAt: Date
+  @CreateDateColumn()
+  created_at: Date
+
+  @UpdateDateColumn()
+  updated_at: Date
+
+  @DeleteDateColumn()
+  deleted_at: Date
 }

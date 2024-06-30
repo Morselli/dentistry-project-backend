@@ -39,7 +39,7 @@ export class UserService {
     return user
   }
 
-  async updateById(id: string, { firstName, lastName, cro, email, password, role }: IUserDto): Promise<User> {
+  async updateById(id: number, { firstName, lastName, cro, email, password, role }: IUserDto): Promise<User> {
 
     const user = await UserService.userRepository.findOneBy({
       id
@@ -65,7 +65,7 @@ export class UserService {
     return updatedUser
   }
 
-  async removeById(id: string): Promise<void> {
+  async removeById(id: number): Promise<void> {
 
     const user = await UserService.userRepository.findOneBy({
       id
@@ -76,5 +76,29 @@ export class UserService {
     }
 
     await UserService.userRepository.delete(id)
+  }
+
+  async findById(id: number): Promise<User> {
+
+    const user = await UserService.userRepository.findOneBy({
+      id
+    })
+
+    if(!user) {
+      throw new Error('User not found')
+    }
+
+    return user
+  }
+
+  async findAll(): Promise<User[]> {
+
+    const users = await UserService.userRepository.find()
+
+    if(!users) {
+      throw new Error('Users not found')
+    }
+
+    return users
   }
 }
